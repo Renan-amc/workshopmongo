@@ -1,18 +1,21 @@
 package com.project.workshopMongoDB.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.project.workshopMongoDB.data.User;
 import com.project.workshopMongoDB.data.UserRepository;
 import com.project.workshopMongoDB.dto.UserDTO;
+import com.project.workshopMongoDB.service.exception.ObjectNotFoundException;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -33,4 +36,9 @@ public class UserService {
 	public void deleteUserById(String id) {
 		userRepository.deleteById(id);
 	}
+	
+	public User findById(String id) {
+		Optional<User> obj = userRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+		}
 }

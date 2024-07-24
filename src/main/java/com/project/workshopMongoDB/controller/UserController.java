@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.workshopMongoDB.data.User;
 import com.project.workshopMongoDB.dto.UserDTO;
 import com.project.workshopMongoDB.service.UserService;
+import com.project.workshopMongoDB.service.exception.ObjectNotFoundException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -44,5 +45,11 @@ public class UserController {
 	@DeleteMapping(path = "/users/{id}")
 	public void deleteUserById(@PathVariable String id) {
 		userService.deleteUserById(id);
+	}
+	
+	@GetMapping(value = "/users/{id}")
+	public UserDTO findById(@PathVariable String id) {
+		User obj = userService.findById(id);
+		return new UserDTO(obj);
 	}
 }
