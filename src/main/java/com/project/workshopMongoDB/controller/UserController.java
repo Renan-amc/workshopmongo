@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.workshopMongoDB.data.User;
+import com.project.workshopMongoDB.dto.UserDTO;
 import com.project.workshopMongoDB.service.UserService;
 
 @RestController
@@ -24,7 +25,7 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping(path = "/users")
-	public List<User> getAllUsers() {
+	public List<UserDTO> getAllUsers() {
 		return userService.getAllUser();
 	}
 
