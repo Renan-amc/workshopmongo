@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.project.workshopMongoDB.data.User;
@@ -45,6 +44,11 @@ public class UserService {
 	public User insert(User obj) {
 		return userRepository.insert(obj);
 	}
+	
+	public void delete(String id) {
+		 findById(id);
+		 userRepository.deleteById(id);
+		}
 	
 	
 	public User fromDTO(UserDTO objDto) {
