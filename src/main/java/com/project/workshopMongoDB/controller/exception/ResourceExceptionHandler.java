@@ -1,7 +1,5 @@
 package com.project.workshopMongoDB.controller.exception;
 
-import java.security.Timestamp;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
