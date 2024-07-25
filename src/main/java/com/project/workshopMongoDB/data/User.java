@@ -1,6 +1,10 @@
 package com.project.workshopMongoDB.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
@@ -11,6 +15,9 @@ public class User {
 	private String lastName;
 	private String address;
 	private String occupation;
+	
+	@DBRef(lazy = true)
+	private List<Post> posts = new ArrayList<>();
 
 	public User(String id, String firstName, String lastName, String address, String occupation) {
 		this.id = id;
@@ -54,6 +61,14 @@ public class User {
 
 	public String getOccupation() {
 		return occupation;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	public void setOccupation(String occupation) {
