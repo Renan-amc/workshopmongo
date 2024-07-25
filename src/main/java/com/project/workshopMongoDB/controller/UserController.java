@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.workshopMongoDB.data.Post;
 import com.project.workshopMongoDB.data.User;
 import com.project.workshopMongoDB.dto.UserDTO;
 import com.project.workshopMongoDB.service.UserService;
@@ -50,5 +51,11 @@ public class UserController {
 	public UserDTO findById(@PathVariable String id) {
 		User obj = userService.findById(id);
 		return new UserDTO(obj);
+	}
+	
+	@GetMapping(value = "/users/{id}/posts")
+	public List<Post> findPosts(@PathVariable String id) {
+		User obj = userService.findById(id);
+		return obj.getPosts();
 	}
 }
